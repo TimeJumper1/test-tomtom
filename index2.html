@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pizzeria locator</title>
+    <!-- Replace version in the URL with desired library version -->
+    <link href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps.css' rel='stylesheet' type='text/css'>
+    <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps-web.min.js'></script>
+    <link href='https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' rel='stylesheet'>
+    <script src='stores.js' type='text/javascript'></script>
+    <link href='css/style.css' rel='stylesheet' type='text/css'/>
+    <script src='https://code.jquery.com/jquery-1.12.4.js'></script>
+    <script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js'></script>
+<script>(function(){ window.SS = window.SS || {}; SS.Require = function (callback){ if (typeof callback === 'function') { if (window.SS && SS.EventTrack) { callback(); } else { var siteSpect = document.getElementById('siteSpectLibraries'); var head = document.getElementsByTagName('head')[0]; if (siteSpect === null && typeof head !== 'undefined') { siteSpect = document.createElement('script'); siteSpect.type = 'text/javascript'; siteSpect.src = '/__ssobj/core.js+ssdomvar.js+generic-adapter.js';siteSpect.async = true; siteSpect.id = 'siteSpectLibraries'; head.appendChild(siteSpect); } if (window.addEventListener){ siteSpect.addEventListener('load', callback, false); } else { siteSpect.attachEvent('onload', callback, false); } } } };})(); </script> </head>
+<body>
+<div class='control-panel'>
+    <div class='heading'>
+        immagine appartamento
+    </div>
+    <div id='store-list'></div>
+</div>
+<div class='map' id='map'></div>
+<script>
+    const apiKey = 'kGFItk4CvS48zigMecM5UxD7OdlWpO9j';
+    const map = tt.map({
+        key: apiKey,
+        container: 'map',
+        center: [11, 42],
+        zoom: 9
+    });
+    stores.features.forEach(function (store, index) {
+    const city = store.properties.city;
+    const address = store.properties.address;
+    const location = store.geometry.coordinates;
+    let cityStoresList = document.getElementById(city);
+    const marker = new tt.Marker().setLngLat(location).setPopup(new tt.Popup({offset: 35}).setHTML(address)).addTo(map);
+    });
+</script>
+</body>
+</html>
