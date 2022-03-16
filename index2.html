@@ -32,7 +32,9 @@
     const address = store.properties.address;
     const location = store.geometry.coordinates;
     let cityStoresList = document.getElementById(city);
-    const marker = new tt.Marker().setLngLat(location).setPopup(new tt.Popup({offset: 35}).setHTML(address)).addTo(map);
+    var element = document.createElement('div');
+    element.id = 'marker';
+    const marker = new tt.Marker({element: element}).setLngLat(location).setPopup(new tt.Popup({offset: 35}).setHTML(address)).addTo(map);
     });
 </script>
 </body>
