@@ -1,3 +1,4 @@
+// array di oggetti per metter i marke sulla mappa
 const stores = {
     "type": "FeatureCollection",
     "features": [{

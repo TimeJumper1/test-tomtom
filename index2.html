@@ -20,6 +20,7 @@
 </div>
 <div class='map' id='map'></div>
 <script>
+    // aggiugere la propria chiave
     const apiKey = 'kGFItk4CvS48zigMecM5UxD7OdlWpO9j';
     const map = tt.map({
         key: apiKey,
@@ -27,11 +28,14 @@
         center: [11, 42],
         zoom: 9
     });
+    // funzione che mette i marker
     stores.features.forEach(function (store, index) {
     const city = store.properties.city;
     const address = store.properties.address;
     const location = store.geometry.coordinates;
     let cityStoresList = document.getElementById(city);
+    // elemento che permette la modifica delle immagini dei marker
+    // element va dentro tt.Marker nelle graffe
     var element = document.createElement('div');
     element.id = 'marker';
     const marker = new tt.Marker({element: element}).setLngLat(location).setPopup(new tt.Popup({offset: 35}).setHTML(address)).addTo(map);
